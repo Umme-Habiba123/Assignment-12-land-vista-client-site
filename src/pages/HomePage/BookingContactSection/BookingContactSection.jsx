@@ -26,13 +26,13 @@ const BookingContactSection = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // <-- token পাঠানো হচ্ছে
+          Authorization: `Bearer ${token}`, 
         },
         body: JSON.stringify(contactData),
       });
 
       if (res.ok) {
-        alert("✅ Thanks! We’ll contact you soon.");
+toast.success("✅ Thanks! We’ll contact you soon.");
         setPhone("");
       } else {
         const data = await res.json();

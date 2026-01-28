@@ -75,10 +75,7 @@ export const router = createBrowserRouter([
         path: "/news/:id",
         element: <NewsDetail></NewsDetail>
       },
-      {
-        path: "/contact",
-        element: <Contact></Contact>
-      },
+     
       {
         path: "/propertyListings",
         element: <PropertyListings></PropertyListings>
@@ -174,6 +171,10 @@ export const router = createBrowserRouter([
           {
             path: "manage-reviews",
             element: <ManageReviews></ManageReviews>
+          },
+          {
+            path: "contact",
+            element: <Contact></Contact>
           },
         ]
       },

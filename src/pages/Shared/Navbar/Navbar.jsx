@@ -43,11 +43,11 @@ const Navbar = () => {
         </NavLink>
       </li>
       {user && <DashboardDropdown/>}
-      <li>
+      {/* <li>
         <NavLink to="/contact" className="flex items-center gap-1">
           Contact
         </NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink to="/blog" className="flex items-center gap-1">
           Blog

@@ -1,6 +1,6 @@
 // components/Sidebar/AdminSidebar.jsx
 import { NavLink } from "react-router"; // fixed import
-import { FaUserShield, FaHome, FaUsersCog, FaStar, FaBullhorn } from "react-icons/fa";
+import { FaUserShield, FaHome, FaUsersCog, FaStar, FaBullhorn, FaPhoneAlt } from "react-icons/fa";
 import VistaLand from "../../../Shared/ProjectLogo/VistaLand";
 
 const AdminSidebar = () => {
@@ -10,6 +10,7 @@ const AdminSidebar = () => {
     { path: "/dashboard/admin/manage-users", icon: <FaUsersCog />, label: "Manage Users" },
     { path: "/dashboard/admin/manage-reviews", icon: <FaStar />, label: "Manage Reviews" },
     { path: "/dashboard/admin/advertise-property", icon: <FaBullhorn />, label: "Advertise Property" },
+    { path: "/dashboard/admin/contact", icon:<FaPhoneAlt />, label: "Contacts" },
   ];
 
   return (
