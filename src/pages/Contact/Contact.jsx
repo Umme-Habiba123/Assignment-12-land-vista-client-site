@@ -1,39 +1,53 @@
 import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 
 const Contact = () => {
   const [contacts, setContacts] = useState([]);
-  const {user}=useAuth()
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure(); // ensure baseURL is set in this hook
 
-useEffect(() => {
-  if (!user?._id) return; 
+  useEffect(() => {
+    if (!user?._id) return;
 
-  fetch(`http://localhost:5000/contacts?userId=${user._id}`)
-    .then((res) => res.json())
-    .then((data) => setContacts(data))
-    .catch((err) => console.error(err));
-}, [user]);
+    const fetchContacts = async () => {
+      try {
+        // Backend should have GET /contacts?userId=
+        const res = await axiosSecure.get(`/contacts`, {
+          params: { userId: user._id }
+        });
+        setContacts(res.data);
+      } catch (err) {
+        console.error("Failed to fetch contacts:", err);
+      }
+    };
 
+    fetchContacts();
+  }, [user, axiosSecure]);
 
   const handleStatusChange = async (id, newStatus) => {
-    await fetch(`http://localhost:5000/contacts/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: newStatus }),
-    });
-    setContacts((prev) =>
-      prev.map((item) =>
-        item._id === id ? { ...item, status: newStatus } : item
-      )
-    );
+    try {
+      // Backend should have PATCH /contacts/:id
+      const res = await axiosSecure.patch(`/contacts/${id}`, { status: newStatus });
+
+      if (res.status !== 200 && res.status !== 204) {
+        throw new Error("Failed to update status");
+      }
+
+      setContacts((prev) =>
+        prev.map((item) =>
+          item._id === id ? { ...item, status: newStatus } : item
+        )
+      );
+    } catch (err) {
+      console.error("Error updating status:", err);
+    }
   };
 
   return (
     <div className="min-h-screen py-16 px-8 bg-white transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-semibold text-red-600 mb-8">
-          📞 Contacts
-        </h1>
+        <h1 className="text-3xl font-semibold text-red-600 mb-8">📞 Contacts</h1>
 
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-left">
