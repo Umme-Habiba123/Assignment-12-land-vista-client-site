@@ -1,7 +1,7 @@
 import { Phone, Mail } from "lucide-react";
 import React, { useState } from "react";
-import { getAuth } from "firebase/auth"; // Firebase auth import
-
+import { getAuth } from "firebase/auth";
+import toast, { Toaster } from "react-hot-toast"; 
 const BookingContactSection = () => {
   const [phone, setPhone] = useState("");
 
@@ -13,39 +13,40 @@ const BookingContactSection = () => {
       const user = auth.currentUser;
 
       if (!user) {
-        alert("❌ You must be logged in!");
+        toast.error("❌ You must be logged in!");
         return;
       }
 
-      // Firebase ID token
       const token = await user.getIdToken();
-
       const contactData = { phone };
 
       const res = await fetch("http://localhost:5000/contacts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(contactData),
       });
 
       if (res.ok) {
-toast.success("✅ Thanks! We’ll contact you soon.");
+        toast.success("✅ Thanks! We’ll contact you soon.");
         setPhone("");
       } else {
         const data = await res.json();
-        alert("❌ Failed: " + (data.message || "Try again"));
+        toast.error("❌ Failed: " + (data.message || "Try again"));
       }
     } catch (err) {
       console.error(err);
-      alert("❌ Something went wrong. Check console.");
+      toast.error("❌ Something went wrong. Check console.");
     }
   };
 
   return (
     <section className="min-h-[80vh] flex items-center justify-center py-20 px-6 md:px-20">
+      {/* ✅ Toaster */}
+      <Toaster position="top-right" reverseOrder={false} />
+
       <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl w-full">
         {/* Left Side */}
         <div>
