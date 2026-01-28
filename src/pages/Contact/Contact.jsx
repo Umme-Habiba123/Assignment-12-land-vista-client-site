@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const Contact = () => {
   const [contacts, setContacts] = useState([]);
+  const {user}=useAuth()
 
-  useEffect(() => {
-    fetch("https://real-state-server-site.vercel.app/contacts")
-      .then((res) => res.json())
-      .then((data) => setContacts(data));
-  }, []);
+useEffect(() => {
+  if (!user?._id) return; 
+
+  fetch(`http://localhost:5000/contacts?userId=${user._id}`)
+    .then((res) => res.json())
+    .then((data) => setContacts(data))
+    .catch((err) => console.error(err));
+}, [user]);
+
 
   const handleStatusChange = async (id, newStatus) => {
-    await fetch(`https://real-state-server-site.vercel.app/contacts/${id}`, {
+    await fetch(`http://localhost:5000/contacts/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus }),

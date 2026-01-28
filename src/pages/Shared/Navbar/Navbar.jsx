@@ -1,14 +1,11 @@
 import React, {  useState } from "react";
 import { NavLink } from "react-router";
-import { FaMoon, FaSun } from "react-icons/fa";
 import userPhoto from "../../../assets/user.png";
 import VistaLand from "../ProjectLogo/VistaLand";
-import { ThemeContext } from "../../../context/ThemeContext/ThemeContext";
 import useAuth from "../../../hooks/useAuth";
 import DashboardDropdown from "../../../Components/DashboardDropdown/DashboardDropdown";
 
 const Navbar = () => {
-  // const { theme, toggleTheme } = useContext(ThemeContext);
   const { user, logOutUser } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
