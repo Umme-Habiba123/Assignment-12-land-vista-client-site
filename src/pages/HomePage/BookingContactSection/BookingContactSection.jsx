@@ -1,5 +1,6 @@
 import { Phone, Mail } from "lucide-react";
 import React, { useState } from "react";
+import { getAuth } from "firebase/auth"; // Firebase auth import
 
 const BookingContactSection = () => {
   const [phone, setPhone] = useState("");
@@ -7,16 +8,26 @@ const BookingContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const contactData = {
-      phone,
-      status: "pending", // default
-      createdAt: new Date(),
-    };
-
     try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      if (!user) {
+        alert("❌ You must be logged in!");
+        return;
+      }
+
+      // Firebase ID token
+      const token = await user.getIdToken();
+
+      const contactData = { phone };
+
       const res = await fetch("http://localhost:5000/contacts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // <-- token পাঠানো হচ্ছে
+        },
         body: JSON.stringify(contactData),
       });
 
@@ -24,10 +35,12 @@ const BookingContactSection = () => {
         alert("✅ Thanks! We’ll contact you soon.");
         setPhone("");
       } else {
-        alert("❌ Failed to send. Try again.");
+        const data = await res.json();
+        alert("❌ Failed: " + (data.message || "Try again"));
       }
     } catch (err) {
       console.error(err);
+      alert("❌ Something went wrong. Check console.");
     }
   };
 
