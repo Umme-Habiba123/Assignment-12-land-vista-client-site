@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
     try {
         const result = await signInWithPopup(auth, googleProvider);
         setUser(result.user);
-        return result.user;
+        return result;
     } catch (error) {
         console.error("Google Sign-in error:", error);
         alert(error.message); // or show custom toast

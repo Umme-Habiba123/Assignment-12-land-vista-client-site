@@ -27,6 +27,6 @@ createRoot(document.getElementById('root')).render(
         </QueryClientProvider>
       </div>
     </HelmetProvider>
-   </ThemeProvider>
-  </StrictMode>,
+  //  </ThemeProvider>
+  // </StrictMode>,
 )

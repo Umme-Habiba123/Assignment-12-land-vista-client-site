@@ -38,19 +38,19 @@ const MyReviews = () => {
   };
 
   return (
-    <div className="space-y-4 p-4 max-w-3xl mx-auto">
+    <div className="space-y-4 p-4 max-w-3xl mx-auto bg-white text-black">
       {reviews.length === 0 ? (
-        <p className="text-center text-gray-500">You have not given any reviews yet.</p>
+        <p className="text-center text-red-500">You have not given any reviews yet.</p>
       ) : (
         reviews.map(review => (
-          <div key={review._id} className="border p-4 rounded-xl shadow">
-            <h3 className="text-lg font-semibold">{review.propertyTitle}</h3>
-            <p className="text-sm text-gray-600">Agent: {review.agentName}</p>
+          <div key={review._id} className="border border-red-500 p-4 rounded-xl shadow-lg bg-white">
+            <h3 className="text-lg font-semibold text-red-600">{review.propertyTitle}</h3>
+            <p className="text-sm text-black">Agent: {review.agentName}</p>
             <p className="text-sm text-gray-500">Time: {new Date(review.reviewedAt).toLocaleString()}</p>
-            <p className="mt-2">{review.review}</p>
+            <p className="mt-2 text-black">{review.review}</p>
             <button
               onClick={() => handleDelete(review._id)}
-              className="btn btn-sm btn-error mt-3"
+              className="btn btn-sm bg-red-600 hover:bg-red-700 text-white mt-3"
             >
               Delete
             </button>

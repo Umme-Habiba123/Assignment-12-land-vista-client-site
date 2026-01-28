@@ -1,7 +1,6 @@
 // components/Sidebar/UserSidebar.jsx
 import { NavLink } from "react-router"; // fixed import
 import { FaUser, FaHeart, FaStar, FaHouseUser } from "react-icons/fa";
-import VistaLand from "../../../Shared/ProjectLogo/VistaLand";
 
 const UserSidebar = () => {
   const menuItems = [
@@ -12,11 +11,10 @@ const UserSidebar = () => {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-base-200 text-black">
+    <div className="flex flex-col h-full bg-white text-black border-r border-red-500">
       {/* Logo and Title */}
       <div className="flex flex-col items-center lg:items-start p-4">
-
-        <h2 className="text-xl lg:text-2xl font-bold text-purple-700 mt-4 mb-6 text-center lg:text-left">
+        <h2 className="text-xl lg:text-2xl font-bold text-red-600 mt-4 mb-6 text-center lg:text-left">
           User Dashboard
         </h2>
       </div>
@@ -29,11 +27,11 @@ const UserSidebar = () => {
               to={item.path}
               className={({ isActive }) =>
                 `flex items-center gap-2 p-3 rounded-lg transition-colors duration-200
-                 ${isActive ? "bg-purple-200 font-semibold" : "hover:bg-purple-100"}`
+                 ${isActive ? "bg-red-100 font-semibold text-red-700" : "hover:bg-red-50 text-black"}`
               }
             >
               <span className="text-lg">{item.icon}</span>
-              <span className="text-black">{item.label}</span>
+              <span>{item.label}</span>
             </NavLink>
           </li>
         ))}

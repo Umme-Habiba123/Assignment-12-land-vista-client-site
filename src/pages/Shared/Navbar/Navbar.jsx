@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, {  useState } from "react";
 import { NavLink } from "react-router";
 import { FaMoon, FaSun } from "react-icons/fa";
 import userPhoto from "../../../assets/user.png";
@@ -8,7 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 import DashboardDropdown from "../../../Components/DashboardDropdown/DashboardDropdown";
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  // const { theme, toggleTheme } = useContext(ThemeContext);
   const { user, logOutUser } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -60,8 +60,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className=" w-full shadow-md sticky top-0 z-50 transition-colors duration-300">
-      <div className="navbar w-[95%] md:w-10/12 mx-auto px-3 md:px-2 py-2 flex justify-between items-center sansita-font">
+    <nav className=" w-full bg-gray-300 shadow-md sticky top-0 z-50 transition-colors duration-300">
+      <div className="navbar w-[95%] md:w-10/12 mx-auto px-3 md:px-2 py-4 flex justify-between items-center sansita-font">
         {/* Left: Logo & Mobile Menu */}
         <div className="flex items-center gap-3">
           <div className="lg:hidden">
@@ -132,12 +132,12 @@ const Navbar = () => {
             ) : (
               <>
                 <NavLink to="/login">
-                  <button className="btn btn-outline border-2 border-white btn-sm bg-[#564F6F] font-bold text-white hover:bg-[#D1D7E0] hover:text-[#802BB1] px-3 sm:px-4">
+                  <button className="btn btn-outline border-2 border-white btn-sm bg-[#564F6F] font-bold text-white hover:bg-[#D1D7E0] hover:text-red-500 px-3 sm:px-4">
                     LOG IN
                   </button>
                 </NavLink>
                 <NavLink to="/registration">
-                  <button className="btn btn-outline border-2 border-white btn-sm bg-[#564F6F] text-white hover:bg-[#D1D7E0] hover:text-[#802BB1] font-bold px-3 sm:px-4">
+                  <button className="btn btn-outline border-2 border-white btn-sm bg-[#564F6F] text-white hover:bg-[#D1D7E0] hover:text-red-500 font-bold px-3 sm:px-4">
                     REGISTRATION
                   </button>
                 </NavLink>
@@ -146,12 +146,12 @@ const Navbar = () => {
           </div>
 
           {/* Theme Toggle */}
-          <button
+          {/* <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:ring-2 transition-colors duration-300"
           >
             {theme === "light" ? <FaMoon /> : <FaSun />}
-          </button>
+          </button> */}
         </div>
       </div>
     </nav>

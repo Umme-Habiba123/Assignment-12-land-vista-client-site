@@ -42,7 +42,7 @@ const Banner = () => {
                 {caption}
               </h2>
 
-              <Link to="/properties" className=" border-1 border-red-500 p-2 text-white rounded-lg px-8 md:px-10 hover:bg-gray-400 ">
+              <Link to="/properties" className=" border-1 border-none bg-red-500 p-2 text-white rounded-lg px-8 md:px-10 hover:bg-red-400 hover:text-black  hover:border-1 ">
                 Explore Now
               </Link>
             </div>
