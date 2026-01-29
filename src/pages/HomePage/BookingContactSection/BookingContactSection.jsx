@@ -65,7 +65,7 @@ const BookingContactSection = () => {
               type="tel"
               placeholder="Phone Number"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value) }
               required
               className="flex-1 px-4 py-3 outline-none text-gray-700 placeholder-gray-500 bg-transparent"
             />
