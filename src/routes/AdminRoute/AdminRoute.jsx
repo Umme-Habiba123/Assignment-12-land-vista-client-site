@@ -12,4 +12,4 @@ const AdminRoute = ({ children }) => {
   return <Navigate to="/" replace />;
 };
 
-export default AdminRoute;
+export default AdminRoute ;
