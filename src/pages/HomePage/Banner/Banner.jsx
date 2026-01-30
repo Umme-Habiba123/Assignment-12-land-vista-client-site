@@ -18,35 +18,35 @@ const Banner = () => {
       caption: 'Find Your Dream Home',
       subtext: 'Premium properties with modern amenities',
       buttonText: 'Explore Properties',
-      gradient: 'from-blue-900/70 to-purple-900/70'
+    
     },
     { 
       image: bannerPhoto2, 
       caption: 'Modern Living, Simplified',
       subtext: 'Contemporary designs for urban lifestyles',
       buttonText: 'View Designs',
-      gradient: 'from-emerald-900/70 to-cyan-900/70'
+     
     },
     { 
       image: bannerPhoto3, 
       caption: 'Explore Prime Properties',
       subtext: 'Prime locations with excellent connectivity',
       buttonText: 'See Locations',
-      gradient: 'from-amber-900/70 to-orange-900/70'
+      
     },
     { 
       image: bannerPhoto4, 
       caption: 'Secure Investment with LandVista',
       subtext: 'Your trusted partner in real estate',
       buttonText: 'Learn More',
-      gradient: 'from-rose-900/70 to-pink-900/70'
+      
     },
     { 
       image: bannerPhoto5, 
       caption: 'Urban Comfort Meets Nature',
       subtext: 'Experience harmony in living spaces',
       buttonText: 'Discover Harmony',
-      gradient: 'from-teal-900/70 to-green-900/70'
+     
     },
   ];
 
@@ -152,7 +152,7 @@ const Banner = () => {
             data-aos-duration="1000"
           >
             {/* Background Image with Parallax Effect */}
-            <div className="absolute inset-0">
+            <div className="absolute inset-0" >
               <img
                 src={image}
                 alt={caption}
